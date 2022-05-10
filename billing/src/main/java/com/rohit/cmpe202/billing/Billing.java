@@ -22,25 +22,21 @@ public class Billing {
 			System.exit(-1);
 		}
 		try {
-		//1. Intialize db
+		//Intialize db
 		InventoryDatabase invDb=InventoryDatabase.getInstance();
 
-		//2. read file from inventory
 		Input_Reader reader = new Input_Reader();
 		List<InputItems> inputItems = reader.readInputItems(args[0]);
 		
-		//3. Create objects of validation
 		AbstractHandler itemPresentObj = new PresentItemValidationHandler();
 		AbstractHandler maxcapObj = new CapCheckValidationHandler();
 		AbstractHandler quantityDbValidObj = new StockEnoughValidationHandler();
 		AbstractHandler processObj = new FinalOrderCalcPrice();
 		
-		//4. create chain
 		itemPresentObj.nextHandler(maxcapObj);
 		maxcapObj.nextHandler(quantityDbValidObj);
 		quantityDbValidObj.nextHandler(processObj);
-		
-		//5. call handle method
+
 		itemPresentObj.handle(inputItems);
 	}catch (FileNotFoundException e) {
 		System.out.println("Input File Not Found");

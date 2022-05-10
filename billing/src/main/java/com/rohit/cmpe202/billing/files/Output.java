@@ -18,7 +18,7 @@ public class Output {
 	}
 public void writeFile(String contents) throws FileNotFoundException{
 	create_file(contents, "output.csv");
-	System.out.println("Finished writing to CSV File");
+	System.out.println("Finished writing to Output CSV File");
 }
 
 public void writeError(String contents) throws FileNotFoundException{

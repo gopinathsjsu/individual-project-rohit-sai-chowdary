@@ -3,6 +3,8 @@ package com.rohit.cmpe202.billing.inventory;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -18,19 +20,14 @@ public class InventoryDatabase {
 	public static Map<String,InventoryItems> itemsMap = new HashMap<String, InventoryItems>();
 	public static Set<String> cards = null;
 	
-//	private InventoryDatabase() {
-//		System.out.println("Creating inventory");
-////		itemsMap= new HashMap<>();
-//		cardsSet=new HashSet<>();
-//		itemsMap.put("Shampoo", new InventoryItems(null, null, 0, 0));
-//	}
 	
 	private InventoryDatabase() {
 		String filePath = "Dataset.csv";
 		String line = "";
 		System.out.println("Creating inventory");
+		InputStream is=this.getClass().getClassLoader().getResourceAsStream((filePath));
 		try {
-			BufferedReader br = new BufferedReader(new FileReader(filePath));
+			BufferedReader br = new BufferedReader(new InputStreamReader(is));
 			br.readLine();
 			while ((line = br.readLine())!= null) {
 				String [] dataset = line.split(",");
@@ -39,7 +36,6 @@ public class InventoryDatabase {
 				InventoryItemsBuilder itembuilder= new InventoryItemsBuilder();
 				InventoryItems newDataitem = itembuilder.itemName(dataset[0].toLowerCase()).category(dataset[1])
 						.quantity(quant).price(price).build();
-//				InventoryItems newDataitem = new InventoryItems(dataset[0].toLowerCase(), dataset[1], quant, price);
 				itemsMap.put(dataset[0].toLowerCase(), newDataitem);
 				
 			}

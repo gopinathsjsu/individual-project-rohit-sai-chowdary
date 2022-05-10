@@ -6,7 +6,6 @@ import java.util.List;
 import com.rohit.cmpe202.billing.files.Output;
 import com.rohit.cmpe202.billing.inventory.InventoryDatabase;
 import com.rohit.cmpe202.billing.models.InputItems;
-//import com.rohit.cmpe202.billing.models.InventoryItems;
 
 public class PresentItemValidationHandler extends AbstractHandler {
 	private StringBuilder message = new StringBuilder();
