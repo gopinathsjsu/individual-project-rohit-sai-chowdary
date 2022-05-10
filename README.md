@@ -24,7 +24,7 @@ Table 2: Cards
 # Design Patterns Used:
 - Singleton
 - Chain of Responsibility
-- Builder Design Pattern
+- Builder
 
 ## Singleton Design Pattern:
 - Used this design pattern for the database part of the application. 
