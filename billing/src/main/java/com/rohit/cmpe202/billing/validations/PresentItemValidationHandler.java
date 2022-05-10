@@ -10,7 +10,7 @@ import com.rohit.cmpe202.billing.models.InputItems;
 
 public class PresentItemValidationHandler extends AbstractHandler {
 	private StringBuilder message = new StringBuilder();
-	private boolean isValid = true;
+	private boolean is_Input_Valid = true;
 
 	@Override
 	public void nextHandler(AbstractHandler next) {
@@ -27,10 +27,10 @@ public class PresentItemValidationHandler extends AbstractHandler {
 			String itemName = inputItems.get(i).getItemName();
 			if (!inventory.getItems().containsKey(itemName)) {
 				message.append(itemName + " not available in inventory\n");
-				isValid = false;
+				is_Input_Valid = false;
 			}
 		}
-		if (isValid) {
+		if (is_Input_Valid) {
 			System.out.println("All the items are present.");
 			super.next.handle(inputItems);
 		} else {
